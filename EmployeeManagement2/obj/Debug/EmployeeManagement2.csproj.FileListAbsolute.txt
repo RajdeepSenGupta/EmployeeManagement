@@ -1,0 +1,6 @@
+c:\users\rajdeep\documents\visual studio 2013\Projects\EmployeeManagement2\EmployeeManagement2\bin\Debug\EmployeeManagement2.exe.config
+c:\users\rajdeep\documents\visual studio 2013\Projects\EmployeeManagement2\EmployeeManagement2\bin\Debug\EmployeeManagement2.exe
+c:\users\rajdeep\documents\visual studio 2013\Projects\EmployeeManagement2\EmployeeManagement2\bin\Debug\EmployeeManagement2.pdb
+c:\users\rajdeep\documents\visual studio 2013\Projects\EmployeeManagement2\EmployeeManagement2\obj\Debug\EmployeeManagement2.exe
+c:\users\rajdeep\documents\visual studio 2013\Projects\EmployeeManagement2\EmployeeManagement2\obj\Debug\EmployeeManagement2.pdb
+c:\users\rajdeep\documents\visual studio 2013\Projects\EmployeeManagement2\EmployeeManagement2\obj\Debug\EmployeeManagement2.csprojResolveAssemblyReference.cache
