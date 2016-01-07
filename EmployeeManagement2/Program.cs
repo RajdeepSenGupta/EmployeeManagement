@@ -14,11 +14,11 @@ namespace Assignment2._2
             string id, name, email, skype;
             List<Employee> list = new List<Employee>();                                     //Creating list
             Employee employee = new Employee();
-            
+
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("0.Exit\n1.Register employee\n2.Register HR\n3.Register Developer\n4.Display List\n5.Find Employee");
+                Console.WriteLine("0.Exit\n1.Register employee\n2.Register HR\n3.Register Developer\n4.Display List\n5.Find Employee\n6.Update Employee");
                 Console.Write("\nEnter option:\t");
                 choice = Convert.ToInt32(Console.ReadLine());
 
@@ -29,7 +29,7 @@ namespace Assignment2._2
                         break;
                     case 1:                                                       //Employee Registration
                         Console.WriteLine();
-                        Console.Write("Id:\t");
+                        Console.Write("Employee Id (Start with 'E/e'):\t");
                         id = Console.ReadLine();
                         Console.Write("Name:\t");
                         name = Console.ReadLine();
@@ -39,7 +39,7 @@ namespace Assignment2._2
                         break;
                     case 2:                                                      //HR Registration
                         Console.WriteLine();
-                        Console.Write("Id:\t");
+                        Console.Write("HR Id (Start with 'H/h'):\t");
                         id = Console.ReadLine();
                         Console.Write("Name:\t");
                         name = Console.ReadLine();
@@ -51,7 +51,7 @@ namespace Assignment2._2
                         break;
                     case 3:                                                       //Developer Registration
                         Console.WriteLine();
-                        Console.Write("Id:\t");
+                        Console.Write(" DeveloperId (Start with 'D/d'):\t");
                         id = Console.ReadLine();
                         Console.Write("Name:\t");
                         name = Console.ReadLine();
@@ -90,32 +90,72 @@ namespace Assignment2._2
                         }
                         Console.ReadKey();
                         break;
+                    case 6:                                                                 //Updating an employee
+                        Employee updateEmployee = new Employee();
+                        Console.Write("Id of the employee to be updated:\t");
+                        string updateId = Console.ReadLine();
+                        updateEmployee = updateEmployee.Find(list, updateId);
+                        if (updateEmployee == null)
+                        {
+                            Console.WriteLine("Employee not registered");
+                        }
+                        else
+                        {
+                            if (updateEmployee.Id.StartsWith("E") || updateEmployee.Id.StartsWith("e"))                          //Updating normal employee
+                            {
+                                Console.WriteLine("Id can not be changed\nEmployee Id:\t{0}", updateEmployee.Id);
+                                Console.Write("Name:\t");
+                                updateEmployee.Name = Console.ReadLine();
+                                Console.WriteLine("Employee Updated!");
+                            }
+                            else if (updateEmployee.Id.StartsWith("H") || updateEmployee.Id.StartsWith("h"))                     //Updating HR
+                            {
+                                Console.WriteLine("Id can not be changed\nHR Id:\t{0}", updateEmployee.Id);
+                                Console.Write("Name:\t");
+                                updateEmployee.Name = Console.ReadLine();
+                                Console.Write("Email:\t");
+                                updateEmployee.Email = Console.ReadLine();
+                            }
+                            else if (updateEmployee.Id.StartsWith("D") || updateEmployee.Id.StartsWith("d"))                         //Updating Developer
+                            {
+                                Console.WriteLine("Id can not be changed\nDeveloper Id:\t{0}", updateEmployee.Id);
+                                Console.Write("Name:\t");
+                                updateEmployee.Name = Console.ReadLine();
+                                Console.Write("Skype Id:\t");
+                                updateEmployee.SkypeId = Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Worng id in the list!");
+                            }
+                        }
+                        break;
                 }
             }
 
             Console.ReadKey();
         }
     }
-    class Employee : IMethods                                                                   //Employee inheriting interface
+    class Employee : Variables, IMethods                                                               //Employee inheriting interface, 
     {
         String id, name, email = "For HR only", skypeId = "For developer only";
-        public string Id
+        public override string Id
         {
             get { return id; }
 
             set { id = value; }
         }
-        public string Name
+        public override string Name
         {
             get { return name; }
             set { name = value; }
         }
-        public string Email
+        public override string Email
         {
             get { return email; }
             set { email = value; }
         }
-        public string SkypeId
+        public override string SkypeId
         {
             get { return skypeId; }
             set { skypeId = value; }
@@ -139,8 +179,10 @@ namespace Assignment2._2
             }
             return null;
         }
-        ~Employee();                                                                            //Detrsuctor of Employee()
-
+        ~Employee()                                                                             //Employee Destructor
+        {
+            Console.WriteLine("Employee Destructor");
+        }
     }
     class HR : Employee                                                                         //HR inheriting class Employee
     {
@@ -149,9 +191,11 @@ namespace Assignment2._2
         {
             Email = email;
         }
-        ~HR();                                                                                  //Detrsuctor of HR()
-
-    }                                                                       
+        ~HR()                                                                                   //HR Destructor
+        {
+            Console.WriteLine("HR Destructor");
+        }
+    }
     class Developer : Employee                                                                  //Developer inheriting class Employee
     {
         public Developer(string id, string name, string skype)
@@ -159,12 +203,37 @@ namespace Assignment2._2
         {
             SkypeId = skype;
         }
-        ~Developer();                                                                           //Detrsuctor of Developer()
+        ~Developer()                                                                            //Developer Destructor
+        {
+            Console.WriteLine("Developer Destructor");
+        }
     }
 
     interface IMethods                                                                          //Interface
     {
         Employee Find(List<Employee> list, string id);
-        Employee Display(Employee employee);
+    }
+    public abstract class Variables
+    {
+        public abstract string Id
+        {
+            get;
+            set;
+        }
+        public abstract string Name
+        {
+            get;
+            set;
+        }
+        public abstract string Email
+        {
+            get;
+            set;
+        }
+        public abstract string SkypeId
+        {
+            get;
+            set;
+        }
     }
 }
