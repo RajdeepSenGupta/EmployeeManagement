@@ -101,33 +101,33 @@ namespace Assignment2._2
                         }
                         else
                         {
-                            if (updateEmployee.Id.StartsWith("E") || updateEmployee.Id.StartsWith("e"))                          //Updating normal employee
+                            if (updateEmployee.Email.Equals("N.A.") && updateEmployee.SkypeId.Equals("N.A."))                          //Updating normal employee
                             {
                                 Console.WriteLine("Id can not be changed\nEmployee Id:\t{0}", updateEmployee.Id);
                                 Console.Write("Name:\t");
                                 updateEmployee.Name = Console.ReadLine();
                                 Console.WriteLine("Employee Updated!");
                             }
-                            else if (updateEmployee.Id.StartsWith("H") || updateEmployee.Id.StartsWith("h"))                     //Updating HR
+                            else if (updateEmployee.Email.Equals("N.A.") == false && updateEmployee.SkypeId.Equals("N.A."))                      //Updating HR
                             {
                                 Console.WriteLine("Id can not be changed\nHR Id:\t{0}", updateEmployee.Id);
                                 Console.Write("Name:\t");
                                 updateEmployee.Name = Console.ReadLine();
                                 Console.Write("Email:\t");
                                 updateEmployee.Email = Console.ReadLine();
+                                Console.WriteLine("HR Updated");
                             }
-                            else if (updateEmployee.Id.StartsWith("D") || updateEmployee.Id.StartsWith("d"))                         //Updating Developer
+                            else if (updateEmployee.Email.Equals("N.A.") && updateEmployee.SkypeId.Equals("N.A") == false)                         //Updating Developer
                             {
                                 Console.WriteLine("Id can not be changed\nDeveloper Id:\t{0}", updateEmployee.Id);
                                 Console.Write("Name:\t");
                                 updateEmployee.Name = Console.ReadLine();
                                 Console.Write("Skype Id:\t");
                                 updateEmployee.SkypeId = Console.ReadLine();
+                                Console.WriteLine("Developer Updated");
                             }
-                            else
-                            {
-                                Console.WriteLine("Worng id in the list!");
-                            }
+
+                            Console.ReadKey();
                         }
                         break;
                 }
@@ -138,7 +138,7 @@ namespace Assignment2._2
     }
     class Employee : Variables, IMethods                                                               //Employee inheriting interface, 
     {
-        String id, name, email = "For HR only", skypeId = "For developer only";
+        String id, name, email = "N.A.", skypeId = "N.A.";
         public override string Id
         {
             get { return id; }
@@ -212,6 +212,7 @@ namespace Assignment2._2
     interface IMethods                                                                          //Interface
     {
         Employee Find(List<Employee> list, string id);
+        //Employee Display(Employee employee);
     }
     public abstract class Variables
     {
