@@ -215,8 +215,8 @@ namespace Assignment2._2
     interface IMethods                                                                          //Interface
     {
         Employee Find(List<Employee> list, string id);
-        //Branch 1
         //Branch 2
+        //Branch 2 (1)
     }
 
     public abstract class Variables
