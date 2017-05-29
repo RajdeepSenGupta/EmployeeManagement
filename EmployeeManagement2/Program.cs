@@ -139,7 +139,6 @@ namespace Assignment2._2
     class Employee : Variables, IMethods                                                               //Employee inheriting interface, 
     {
         String id, name, email = "N.A.", skypeId = "N.A.";
-
         public override string Id
         {
             get { return id; }
@@ -185,7 +184,6 @@ namespace Assignment2._2
             Console.WriteLine("Employee Destructor");
         }
     }
-
     class HR : Employee                                                                         //HR inheriting class Employee
     {
         public HR(string id, string name, string email)
@@ -198,7 +196,6 @@ namespace Assignment2._2
             Console.WriteLine("HR Destructor");
         }
     }
-
     class Developer : Employee                                                                  //Developer inheriting class Employee
     {
         public Developer(string id, string name, string skype)
@@ -218,7 +215,6 @@ namespace Assignment2._2
         //Branch 1
         //Branch 2
     }
-
     public abstract class Variables
     {
         public abstract string Id
